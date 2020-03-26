@@ -1,4 +1,4 @@
-import firebase from 'firebase'; // 4.8.1
+import firebase from "firebase"; // 4.8.1
 
 // FireBase constructor
 class Fire {
@@ -11,14 +11,7 @@ class Fire {
   init = () => {
     if (!firebase.apps.length) {
       firebase.initializeApp({
-        apiKey: 'AIzaSyCS0iryF3w_-4uAUdPF7YJXcG7i04gZyk8',
-        authDomain: 'rn-chatapp-7da93.firebaseapp.com',
-        databaseURL: 'https://rn-chatapp-7da93.firebaseio.com',
-        projectId: 'rn-chatapp-7da93',
-        storageBucket: 'rn-chatapp-7da93.appspot.com',
-        messagingSenderId: '354433016001',
-        appId: '1:354433016001:web:14f191582e94ea076c3440',
-        measurementId: 'G-BPJV9H36EW',
+        //  "Api key"
       });
     }
   };
@@ -42,7 +35,7 @@ class Fire {
   }
 
   get ref() {
-    return firebase.database().ref('messages');
+    return firebase.database().ref("messages");
   }
 
   // Timestamping
@@ -54,7 +47,7 @@ class Fire {
       _id,
       timestamp,
       text,
-      user,
+      user
     };
     return message;
   };
@@ -62,7 +55,7 @@ class Fire {
   on = callback =>
     this.ref
       .limitToLast(20)
-      .on('child_added', snapshot => callback(this.parse(snapshot)));
+      .on("child_added", snapshot => callback(this.parse(snapshot)));
 
   get timestamp() {
     return firebase.database.ServerValue.TIMESTAMP;
@@ -74,7 +67,7 @@ class Fire {
       const message = {
         text,
         user,
-        timestamp: this.timestamp,
+        timestamp: this.timestamp
       };
       this.append(message);
     }
