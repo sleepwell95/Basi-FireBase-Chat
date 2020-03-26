@@ -7,6 +7,9 @@ class Fire {
     this.observeAuth();
   }
 
+  // !First lesson end
+
+  // !Secound Lesson start
   // Main initiation
   init = () => {
     if (!firebase.apps.length) {

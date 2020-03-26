@@ -1,33 +1,33 @@
 // @flow
+// !Work for lesson Nr2
 //imports:
-import React from 'react';
-import { GiftedChat } from 'react-native-gifted-chat'; // 0.3.0
+import React from "react";
+import { GiftedChat } from "react-native-gifted-chat"; // 0.3.0
 
-import Fire from '../Fire';
+import Fire from "../Fire";
 
 type Props = {
-  name?: string,
+  name?: string
 };
 
-
 class Chat extends React.Component<Props> {
-// Navigation
+  // Navigation
   static navigationOptions = ({ navigation }) => ({
-    title: (navigation.state.params || {}).name || 'Chat!',
+    title: (navigation.state.params || {}).name || "Chat!"
   });
 
   state = {
-    messages: [],
+    messages: []
   };
-// Geting user from Firebase
+  // Geting user from Firebase
   get user() {
     return {
       name: this.props.navigation.state.params.name,
-      _id: Fire.shared.uid,
+      _id: Fire.shared.uid
     };
   }
 
-// Rendering the messages of the user
+  // Rendering the messages of the user
   render() {
     return (
       <GiftedChat
@@ -41,7 +41,7 @@ class Chat extends React.Component<Props> {
   componentDidMount() {
     Fire.shared.on(message =>
       this.setState(previousState => ({
-        messages: GiftedChat.append(previousState.messages, message),
+        messages: GiftedChat.append(previousState.messages, message)
       }))
     );
   }
