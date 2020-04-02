@@ -1,4 +1,4 @@
-// @flow
+// @Flow
 // !Work for lesson Nr2
 //imports:
 import React from "react";
@@ -28,6 +28,7 @@ class Chat extends React.Component<Props> {
   }
 
   // Rendering the messages of the user
+  // Žinučių atvaizdavimas ekrane su GiftedChat pagalba
   render() {
     return (
       <GiftedChat

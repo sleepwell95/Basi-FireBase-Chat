@@ -23,6 +23,7 @@ class Fire {
   observeAuth = () =>
     firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
 
+  // Autorizacijos patikrinimas, prisijungimas anonimiškai
   onAuthStateChanged = user => {
     if (!user) {
       try {
@@ -33,15 +34,17 @@ class Fire {
     }
   };
 
+  // Pasiimti kątik prisijungusio vartotojo ID
   get uid() {
     return (firebase.auth().currentUser || {}).uid;
   }
 
+  // Pasiimti vartotojų jau parašytas SMS
   get ref() {
     return firebase.database().ref("messages");
   }
 
-  // Timestamping
+  // Timestamping/laiko nustatymas ant SMS
   parse = snapshot => {
     const { timestamp: numberStamp, text, user } = snapshot.val();
     const { key: _id } = snapshot;
@@ -75,10 +78,11 @@ class Fire {
       this.append(message);
     }
   };
-
+  // Firebase push to database
   append = message => this.ref.push(message);
 
   // close the connection to the Backend when message is wrote
+  // Ryšio su databasze uždarymas
   off() {
     this.ref.off();
   }
